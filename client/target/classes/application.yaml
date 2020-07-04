@@ -1,0 +1,7 @@
+
+spring:
+  application:
+    name: gRPC-demo
+
+server:
+  port: 9998   #  配置启动端口号
