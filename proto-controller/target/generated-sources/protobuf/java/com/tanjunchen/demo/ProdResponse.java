@@ -48,11 +48,11 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 18: {
-            com.tanjunchen.demo.Status.Builder subBuilder = null;
+            status.StatusOuterClass.Status.Builder subBuilder = null;
             if (status_ != null) {
               subBuilder = status_.toBuilder();
             }
-            status_ = input.readMessage(com.tanjunchen.demo.Status.parser(), extensionRegistry);
+            status_ = input.readMessage(status.StatusOuterClass.Status.parser(), extensionRegistry);
             if (subBuilder != null) {
               subBuilder.mergeFrom(status_);
               status_ = subBuilder.buildPartial();
@@ -106,7 +106,7 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int STATUS_FIELD_NUMBER = 2;
-  private com.tanjunchen.demo.Status status_;
+  private status.StatusOuterClass.Status status_;
   /**
    * <code>.status.Status status = 2;</code>
    */
@@ -116,13 +116,13 @@ private static final long serialVersionUID = 0L;
   /**
    * <code>.status.Status status = 2;</code>
    */
-  public com.tanjunchen.demo.Status getStatus() {
-    return status_ == null ? com.tanjunchen.demo.Status.getDefaultInstance() : status_;
+  public status.StatusOuterClass.Status getStatus() {
+    return status_ == null ? status.StatusOuterClass.Status.getDefaultInstance() : status_;
   }
   /**
    * <code>.status.Status status = 2;</code>
    */
-  public com.tanjunchen.demo.StatusOrBuilder getStatusOrBuilder() {
+  public status.StatusOuterClass.StatusOrBuilder getStatusOrBuilder() {
     return getStatus();
   }
 
@@ -496,9 +496,9 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private com.tanjunchen.demo.Status status_;
+    private status.StatusOuterClass.Status status_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        com.tanjunchen.demo.Status, com.tanjunchen.demo.Status.Builder, com.tanjunchen.demo.StatusOrBuilder> statusBuilder_;
+        status.StatusOuterClass.Status, status.StatusOuterClass.Status.Builder, status.StatusOuterClass.StatusOrBuilder> statusBuilder_;
     /**
      * <code>.status.Status status = 2;</code>
      */
@@ -508,9 +508,9 @@ private static final long serialVersionUID = 0L;
     /**
      * <code>.status.Status status = 2;</code>
      */
-    public com.tanjunchen.demo.Status getStatus() {
+    public status.StatusOuterClass.Status getStatus() {
       if (statusBuilder_ == null) {
-        return status_ == null ? com.tanjunchen.demo.Status.getDefaultInstance() : status_;
+        return status_ == null ? status.StatusOuterClass.Status.getDefaultInstance() : status_;
       } else {
         return statusBuilder_.getMessage();
       }
@@ -518,7 +518,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <code>.status.Status status = 2;</code>
      */
-    public Builder setStatus(com.tanjunchen.demo.Status value) {
+    public Builder setStatus(status.StatusOuterClass.Status value) {
       if (statusBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -535,7 +535,7 @@ private static final long serialVersionUID = 0L;
      * <code>.status.Status status = 2;</code>
      */
     public Builder setStatus(
-        com.tanjunchen.demo.Status.Builder builderForValue) {
+        status.StatusOuterClass.Status.Builder builderForValue) {
       if (statusBuilder_ == null) {
         status_ = builderForValue.build();
         onChanged();
@@ -548,11 +548,11 @@ private static final long serialVersionUID = 0L;
     /**
      * <code>.status.Status status = 2;</code>
      */
-    public Builder mergeStatus(com.tanjunchen.demo.Status value) {
+    public Builder mergeStatus(status.StatusOuterClass.Status value) {
       if (statusBuilder_ == null) {
         if (status_ != null) {
           status_ =
-            com.tanjunchen.demo.Status.newBuilder(status_).mergeFrom(value).buildPartial();
+            status.StatusOuterClass.Status.newBuilder(status_).mergeFrom(value).buildPartial();
         } else {
           status_ = value;
         }
@@ -580,7 +580,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <code>.status.Status status = 2;</code>
      */
-    public com.tanjunchen.demo.Status.Builder getStatusBuilder() {
+    public status.StatusOuterClass.Status.Builder getStatusBuilder() {
       
       onChanged();
       return getStatusFieldBuilder().getBuilder();
@@ -588,23 +588,23 @@ private static final long serialVersionUID = 0L;
     /**
      * <code>.status.Status status = 2;</code>
      */
-    public com.tanjunchen.demo.StatusOrBuilder getStatusOrBuilder() {
+    public status.StatusOuterClass.StatusOrBuilder getStatusOrBuilder() {
       if (statusBuilder_ != null) {
         return statusBuilder_.getMessageOrBuilder();
       } else {
         return status_ == null ?
-            com.tanjunchen.demo.Status.getDefaultInstance() : status_;
+            status.StatusOuterClass.Status.getDefaultInstance() : status_;
       }
     }
     /**
      * <code>.status.Status status = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        com.tanjunchen.demo.Status, com.tanjunchen.demo.Status.Builder, com.tanjunchen.demo.StatusOrBuilder> 
+        status.StatusOuterClass.Status, status.StatusOuterClass.Status.Builder, status.StatusOuterClass.StatusOrBuilder> 
         getStatusFieldBuilder() {
       if (statusBuilder_ == null) {
         statusBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.tanjunchen.demo.Status, com.tanjunchen.demo.Status.Builder, com.tanjunchen.demo.StatusOrBuilder>(
+            status.StatusOuterClass.Status, status.StatusOuterClass.Status.Builder, status.StatusOuterClass.StatusOrBuilder>(
                 getStatus(),
                 getParentForChildren(),
                 isClean());

@@ -23,9 +23,9 @@ public interface ProdResponseOrBuilder extends
   /**
    * <code>.status.Status status = 2;</code>
    */
-  com.tanjunchen.demo.Status getStatus();
+  status.StatusOuterClass.Status getStatus();
   /**
    * <code>.status.Status status = 2;</code>
    */
-  com.tanjunchen.demo.StatusOrBuilder getStatusOrBuilder();
+  status.StatusOuterClass.StatusOrBuilder getStatusOrBuilder();
 }

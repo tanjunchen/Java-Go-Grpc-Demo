@@ -53,7 +53,7 @@ public final class ProdProto {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.tanjunchen.demo.statusProto.getDescriptor(),
+          status.StatusOuterClass.getDescriptor(),
         }, assigner);
     internal_static_prod_ProdRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -67,7 +67,7 @@ public final class ProdProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_prod_ProdResponse_descriptor,
         new java.lang.String[] { "ProdStock", "Status", });
-    com.tanjunchen.demo.statusProto.getDescriptor();
+    status.StatusOuterClass.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)
