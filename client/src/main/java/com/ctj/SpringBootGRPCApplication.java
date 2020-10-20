@@ -14,4 +14,3 @@ public class SpringBootGRPCApplication {
         deployment.stream();
     }
 }
-
