@@ -1,0 +1,222 @@
+syntax = "proto3";
+
+package k8s;
+
+option go_package = "beyondmesh/src/proto/k8s";
+
+option java_package = "com.tanjunchen.demo";
+option java_outer_classname = "PodProto";
+
+import "status/status.proto";
+
+// 或者 pod 的请求消息的内容
+message PodRequest{
+
+  // pod 所属于的 deployment 的名称
+  string deploymentName = 1;
+
+  // pod name 名称
+  string podName = 2;
+
+  // pod 所在的命名空间
+  string namespace = 3;
+
+  // pod 所拥有的 selector
+  map<string, string> labels = 4;
+
+  // 要排除的命名空间
+  string excludeNamespace = 5;
+
+  // 是否排除排除默认的命名空间 true 排除 false 不排除
+  bool excludeNamespaceFlag = 6;
+}
+
+// 返回的 pod 的信息
+message PodResponse{
+
+  status.Status status = 1;
+
+  repeated PodInfo data = 2;
+}
+
+// pod 的信息
+message PodInfo {
+
+  // pod name 名称
+  string podName = 1;
+
+  // namespace 命名空间的名称
+  string namespace = 2;
+
+  // 标签 label 选择器
+  map<string, string> labels = 3;
+
+  // pod 所在的 Node 的信息
+  string nodeName = 4;
+
+  // node 的运行状态
+  string status = 5;
+
+  // pod 所在的 host IP
+  string hostIp = 6;
+
+  // pod 所在的 pod Ip
+  string podIp = 7;
+
+  // pod 的创建时间
+  string creationTimestamp = 8;
+
+  // 是否注入 sideCar
+  bool sideCar = 9;
+
+  // pod 中所包含的代理 sidecar 镜像的信息
+  // container 容器的状态信息
+  repeated ContainerInfo containerInfo = 10;
+
+  // pod 中的初始容器的信息
+  repeated InitContainerInfo InitContainerInfo = 11;
+}
+
+// pod 中 sidecar 的信息
+message ContainerInfo{
+  // proxy 的名称
+  string name = 1;
+
+  // image 的信息
+  string image = 2;
+
+  // 容器状态是否为 true 可以暂时使用 ready 为 true 进行判断
+  bool  ready = 3;
+}
+
+message InitContainerInfo{
+  // proxy 的名称
+  string name = 1;
+
+  // image 的信息
+  string image = 2;
+
+  // 容器状态是否为 true 可以暂时使用 ready 为 true 进行判断
+  bool  ready = 3;
+}
+
+message PodLogRequest{
+  // namespace
+  string namespace = 1;
+
+  // 日志中是否显示时间戳
+  bool timestamps = 2;
+
+  // 显示什么时间戳后的日志
+  string sinceTime = 3;
+}
+
+message PodLogResponse{
+  // istio operator init 日志
+  string istioInitPodLog = 1;
+}
+
+// 以下是针对 hostNetwork 方式
+message HostIpPortRequest{
+  // 查询某个命名空间下所有设置了 hostNetwork 模式的 deploy 与 pod 信息
+  string namespace = 1;
+
+  // 用来匹配的标签
+  map<string, string> labels = 2;
+}
+
+message HostNetworkPodResponse{
+  // data
+  repeated PodHostPortInfo hostNetworkData = 1;
+
+  repeated ServiceHostPortInfo nodeSelectorData = 2;
+
+  // status 状态
+  status.Status status = 3;
+}
+
+// pod  + port 的信息
+message PodHostPortInfo{
+
+  // namespace
+  string namespace = 1;
+
+  // podIp
+  string podIp = 2;
+
+  // hostIp
+  string hostIp = 3;
+
+  // 端口信息
+  repeated Port port = 4;
+
+  // name
+  string name = 5;
+}
+
+// service + port 的信息
+message ServiceHostPortInfo{
+  // namespace
+  string namespace = 1;
+
+  // podIp
+  string podIp = 2;
+
+  // hostIp
+  string hostIp = 3;
+
+  // 端口信息
+  repeated ServicePorts port = 4;
+
+  // name
+  string name = 5;
+}
+
+message ServicePorts{
+  // name
+  string name = 1;
+
+  // protocol
+  // The IP protocol for this port. Supports "TCP", "UDP", and "SCTP".
+  // Default is TCP.
+  string protocol = 2;
+
+  // port
+  // 1-65535
+  int32 port = 3;
+
+  // TargetPort
+  // 1-65535
+  string targetPort = 4;
+
+  // NodePort
+  // 30000-32767
+  int32 nodePort = 5;
+
+}
+
+// Port 信息
+message Port{
+  int32 containerPort = 1;
+
+  int32 hostPort = 2;
+
+  string  name = 3;
+
+  string protocol = 4;
+
+  string hostIp = 5;
+}
+
+// Pod 的 rpc 接口
+service PodService{
+
+  // 获取某个命名空间下的所有的 Pod 信息
+  rpc GetAllPodInNamespace(PodRequest) returns (PodResponse);
+
+  // 获取某个命名空间下的某个 pod 的日志信息  服务端流
+  rpc GetPodLogInNamespace(stream PodLogRequest) returns (stream PodLogResponse){};
+
+  // 获取 deploy 的 hostNetwork 信息
+  rpc GetHostNetworkInfoInNamespace(HostIpPortRequest) returns(HostNetworkPodResponse);
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package chat;
+
+service Chat {
+  rpc BindStream(stream Request) returns (stream Response) {}
+}
+
+message Request {
+  string in = 1;
+}
+
+message Response {
+  string out = 1;
+}

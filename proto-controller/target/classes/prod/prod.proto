@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package  prod;
+
+option go_package = "grpc-test-demo/src/prod";
+option java_multiple_files = true;
+option java_package = "com.tanjunchen.demo";
+option java_outer_classname = "ProdProto";
+
+import "status/status.proto";
+
+message ProdRequest {
+  // 商品ID
+  int32 prod_id = 1;
+}
+
+message ProdResponse {
+  // 商品库存
+  int32 prod_stock = 1;
+  status.Status status = 2;
+}
+
+service ProductService {
+  rpc  GetProductStock (ProdRequest) returns (ProdResponse);
+}

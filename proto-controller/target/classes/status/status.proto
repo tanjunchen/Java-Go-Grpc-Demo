@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package status;
+
+option go_package = "grpc-test-demo/src/status";
+
+message Status{
+
+  string code = 1;
+
+  string msg = 2;
+}
